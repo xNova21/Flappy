@@ -39,6 +39,8 @@ let bX = 20;
 let bY = cvs.height / 2;
 let caida = true;
 let colision = false;
+// Imagenes al cargar
+bg.onload = () =>{ctx.drawImage(bg, 0, 0, 900, 504, 0, 0, cvs.width, cvs.height)}
 // on key down
 document.addEventListener("keydown", function () {
   caida = false;
@@ -95,7 +97,7 @@ function draw() {
         // console.log(tabla);
         // await tabla
         formulario.innerHTML = "";
-        formulario.innerHTML = `<table class="table"><thead><tr><th>Nick</th><th>Scores</th></tr></thead><tbody><tr><td>${tabla.scores[0].username}</td><td>${tabla.scores[0].score}</td></tr><tr><td>${tabla.scores[1].username}</td><td>${tabla.scores[1].score}</td></tr><td>${tabla.scores[2].username}</td><td>${tabla.scores[2].score}</td><tr><td></td><td></td></tr></tbody></table>`;
+        formulario.innerHTML = `<table class="table table-danger"><thead><tr><th>Nick</th><th>Scores</th></tr></thead><tbody><tr><td>${tabla.scores[0].username}</td><td>${tabla.scores[0].score}</td></tr><tr><td>${tabla.scores[1].username}</td><td>${tabla.scores[1].score}</td></tr><td>${tabla.scores[2].username}</td><td>${tabla.scores[2].score}</td><tr><td></td><td></td></tr></tbody></table>`;
       });
       // location.reload()
     }
@@ -117,7 +119,11 @@ function draw() {
     requestAnimationFrame(draw);
   }
 }
-draw();
+let start = document.getElementById("start");
+start.addEventListener("click", function(){
+  start.remove()
+  draw()
+})
 
 // let body = document.getElementById("body")
 // function formulario(){
