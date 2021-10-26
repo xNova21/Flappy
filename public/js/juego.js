@@ -1,6 +1,6 @@
 // const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
 async function pedirScores(nombre, puntos) {
-  let url = "http://flappy-f.herokuapp.com/api/game/getScore";
+  let url = "https://flappy-f.herokuapp.com/api/game/getScore";
   let info = await fetch( url, {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
