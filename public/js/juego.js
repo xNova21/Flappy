@@ -117,12 +117,15 @@ function draw() {
     // }
     if (score >=2000 && score<5000){
       dificultad = 4
+      gap = 150
     }
     else if(score >=5000 && score<8000){
       dificultad = 6
+      gap = 120
     }
     else if(score >8000 ){
       dificultad = 8
+      gap = 90
     }
     // else if(score >13 ){
     //   dificultad = 6
