@@ -2,10 +2,11 @@ const express = require("express");
 const Puntuacion = require(`../models/Puntuaciones`)
 const router = express.Router();
 router.post("/getScore", async (req, res) => {
-  // console.log(req.body)
 
 await Puntuacion.create(req.body);
-  let scores = await Puntuacion.find().sort((a, b) => b.score - a.score).limit(3);
+  let scores = await Puntuacion.find().sort({score: -1}).limit(3)
+  console.log(scores)
+  // scores.sort((a, b) => b.score - a.score);
   res.json({ scores });
 });
 module.exports = router

@@ -1,12 +1,13 @@
 // const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
 async function pedirScores(nombre, puntos) {
-  let url = "https://flappy-f.herokuapp.com/api/game/getScore";
+  let url = "http://localhost:5000/api/game/getScore";
   let info = await fetch( url, {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: JSON.stringify({ username: nombre, score: puntos }),
   })
     .then(function (scores) {
+      
       return scores.json();
     })
     .catch(function (error) {
