@@ -33,8 +33,8 @@ let score = 0;
 // variables
 let tamañoX = 80;
 let tamañoY = 350;
-let gap = 200;
-let constant = tamañoY + gap;
+let gap = 100;
+let constant = tamañoY + gap
 let alturaSuelo = 50;
 let bX = 20;
 let bY = cvs.height / 2;
@@ -71,7 +71,7 @@ function draw() {
     ctx.drawImage(
       tuberiaAbajo,
       tuberia[i].x,
-      tuberia[i].y + constant,
+      tuberia[i].y + tamañoY + gap,
       tamañoX,
       tamañoY
     );
@@ -88,7 +88,7 @@ function draw() {
     if (
       (bX + 50 >= tuberia[i].x &&
         bX <= tuberia[i].x + tamañoX &&
-        (bY <= tuberia[i].y + tamañoY || bY + 40 >= tuberia[i].y + constant)) ||
+        (bY <= tuberia[i].y + tamañoY || bY + 40 >= tuberia[i].y + tamañoY + gap)) ||
       bY + 40 >= cvs.height - alturaSuelo
     ) {
       colision = true;
@@ -117,15 +117,13 @@ function draw() {
     // }
     if (score >=2000 && score<5000){
       dificultad = 4
-      gap = 150
     }
     else if(score >=5000 && score<8000){
       dificultad = 6
-      gap = 120
     }
     else if(score >8000 ){
       dificultad = 8
-      gap = 90
+      
     }
     // else if(score >13 ){
     //   dificultad = 6
