@@ -12,7 +12,7 @@ async function pedirScores(nombre, puntos) {
     .catch(function (error) {
       console.log(error);
     });
-  return info;
+  return (info) ;
 }
 
 let cvs = document.getElementById("myCanvas");
@@ -32,13 +32,15 @@ let score = 0;
 // variables
 let tamañoX = 80;
 let tamañoY = 350;
-let gap = 100;
+let gap = 200;
 let constant = tamañoY + gap;
 let alturaSuelo = 50;
 let bX = 20;
 let bY = cvs.height / 2;
 let caida = true;
 let colision = false;
+let contador = 0
+let dificultad = 2
 // Imagenes al cargar
 bg.onload = () =>{ctx.drawImage(bg, 0, 0, 900, 504, 0, 0, cvs.width, cvs.height)}
 // on key down
@@ -56,9 +58,12 @@ tuberia[0] = {
 };
 // función
 function draw() {
+  contador++;
+  score++
   ctx.drawImage(bg, 0, 0, 900, 504, 0, 0, cvs.width, cvs.height);
   for (let i = 0; i < tuberia.length; i++) {
-    if (tuberia[i].x == 0 - tamañoX) {
+    score++
+    if (tuberia[i].x == 1000) {
       tuberia.splice(i, 1);
     }
     ctx.drawImage(tuberiaArriba, tuberia[i].x, tuberia[i].y, tamañoX, tamañoY);
@@ -69,11 +74,12 @@ function draw() {
       tamañoX,
       tamañoY
     );
-    tuberia[i].x -= 2;
-    if (tuberia[i].x == 500) {
+    tuberia[i].x -= dificultad;
+    if (contador == 250 && dificultad == 2 || contador == 200 && dificultad == 4 || contador == 150 && dificultad == 6 || contador == 100 && dificultad == 8) {
+      contador = 0
       tuberia.push({
         x: cvs.width,
-        y: Math.floor(Math.random() * tamañoY) - tamañoY,
+        y: Math.floor(Math.random() * (tamañoY-100)) - (tamañoY),
       });
     }
 
@@ -101,9 +107,25 @@ function draw() {
       });
       // location.reload()
     }
-    if (tuberia[i].x + tamañoX == bX) {
-      score++;
+    // if (tuberia[i].x % 2 == 0 && tuberia[i].x + tamañoX == bX || tuberia[i].x % 2 != 0 && tuberia[i].x + tamañoX == bX) {
+    //   score++;
+      
+    // }
+    // else if(tuberia[i].x + tamañoX == bX-1 && score >= 3 || tuberia[i].x + tamañoX == bX-2 && score >= 8){
+    //   score++
+    // }
+    if (score >=2000 && score<5000){
+      dificultad = 4
     }
+    else if(score >=5000 && score<8000){
+      dificultad = 6
+    }
+    else if(score >8000 ){
+      dificultad = 8
+    }
+    // else if(score >13 ){
+    //   dificultad = 6
+    // }
   }
 
   ctx.drawImage(fg, 0, cvs.height - alturaSuelo, cvs.width, alturaSuelo);
